@@ -1,6 +1,6 @@
 <template>
   <div class="page-products">
-    <h1>Products Catalog</h1>
+    <h1>Products Catalog - Selective Regression Test</h1>
     <p style="color: var(--text-muted); margin-top: 0.5rem;">Explore layout structures of dynamically rendered products feeds.</p>
 
     <!-- Products grid with signed image URLs -->
