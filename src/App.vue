@@ -2,7 +2,7 @@
   <div class="app-layout">
     <header class="navbar">
       <div class="nav-container">
-        <router-link to="/" class="logo">⚡ UVT Vue</router-link>
+        <router-link to="/" class="logo">⚡ UVT Vue (Remote CI Final)</router-link>
         <nav class="nav-links">
           <router-link to="/">Home</router-link>
           <router-link to="/about">About</router-link>
@@ -20,7 +20,7 @@
     </main>
 
     <footer class="footer">
-      <p>&copy; 2026 Universal Visual Testing Platform. Vue.js Certification Fixture. (URAE RC-04)</p>
+      <p>&copy; 2026 Universal Visual Testing Platform. Vue.js Certification Fixture. (Final Test)</p>
     </footer>
   </div>
 </template>
