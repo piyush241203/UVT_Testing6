@@ -20,7 +20,7 @@
     </main>
 
     <footer class="footer">
-      <p>&copy; 2026 Universal Visual Testing Platform. Vue.js Certification Fixture.</p>
+      <p>&copy; 2026 Universal Visual Testing Platform. Vue.js Certification Fixture. (URAE RC-04)</p>
     </footer>
   </div>
 </template>
