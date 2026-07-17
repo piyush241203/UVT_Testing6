@@ -1,12 +1,17 @@
-/node_modules/
-/dist/
+node_modules/
+dist/
+build/
+.svelte-kit/
 .next/
 .nuxt/
 .uvt/
 tests/generated/
+*.local
+.env
+.env.local
 
-node_modules/
-/.next/
-/.nuxt/
-/.uvt/
-/tests/generated/
+# Keep UVT plugin packages (dist is needed for CLI)
+!uvt-packages/
+!uvt-packages/**/dist/
+!uvt-packages/**/dist/**
+uvt-packages/**/node_modules/
