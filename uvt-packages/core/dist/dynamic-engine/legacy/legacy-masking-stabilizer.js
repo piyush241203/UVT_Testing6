@@ -81,13 +81,11 @@ class LegacyMaskingStabilizer {
         const combinedValues = [...new Set([...this.localValues, ...interceptedValues])];
         try {
             await this.context.page.evaluate((valuesToMask) => {
-                // 1. Force-freeze active timers
-                for (let i = 1; i < 1000; i++) {
-                    window.clearInterval(i);
-                    window.clearTimeout(i);
-                }
-                window.setInterval = (() => 0);
-                window.setTimeout = (() => 0);
+                // NOTE: Do NOT freeze/replace window.setTimeout or window.setInterval.
+                // Doing so corrupts React's fiber scheduler and other framework internals,
+                // which breaks the Playwright CDP connection and causes Percy snapshots to fail
+                // with "Target page, context or browser has been closed".
+                // Dynamic text masking (below) is sufficient for visual stability.
                 const isDynamicText = (text) => {
                     const cleanText = text.trim();
                     if (!cleanText)
@@ -179,6 +177,8 @@ class LegacyMaskingStabilizer {
                     '[id*="token" i]', '[class*="token" i]',
                     '[id*="uuid" i]', '[class*="uuid" i]',
                     '[data-uvt-dynamic]', '[data-uvt-dynamic] *',
+                    '[class*="dynamic" i]', '[id*="dynamic" i]',
+                    '[class*="random" i]', '[id*="random" i]',
                     'canvas', 'img[src*="avatar" i]', 'img[src*="pravatar" i]',
                     '[class*="avatar" i]', '[id*="avatar" i]'
                 ];
