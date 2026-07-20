@@ -92,9 +92,10 @@ jobs:
           done
 
       - name: Run visual regression tests
-        run: npx uvt test --changed --port 5173
+        run: npx percy exec -- npx uvt test --changed --port 5173
         env:
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
+
           
       - name: Teardown background processes
         if: always()
