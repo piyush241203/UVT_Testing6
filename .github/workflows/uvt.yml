@@ -21,7 +21,8 @@ jobs:
           node-version: 22
 
       - name: Install dependencies
-        run: npm install --include=dev
+        run: npm install
+
 
       - name: UVT Environment Diagnostic
         run: |
