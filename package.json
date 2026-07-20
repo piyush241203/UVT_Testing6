@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite --port 3000 --strictPort",
-    "build": "vite build"
+    "build": "npx vite build"
   },
   "dependencies": {
     "vue": "^3.4.29",
