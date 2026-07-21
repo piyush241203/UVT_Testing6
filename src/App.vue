@@ -2,7 +2,9 @@
   <div class="app-layout">
     <header class="navbar">
       <div class="nav-container">
-        <router-link to="/" class="logo">🚀 UVT Vue v3 — Percy Verified ✅</router-link>
+        <router-link to="/" class="logo">🚀 UVT Vue v5.0 — Ready For User Self-Testing ✨</router-link>
+
+
         <nav class="nav-links">
           <router-link to="/">Home</router-link>
           <router-link to="/about">About</router-link>
