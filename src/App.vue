@@ -2,7 +2,11 @@
   <div class="app-layout">
     <header class="navbar">
       <div class="nav-container">
-        <router-link to="/" class="logo">🚀 UVT Vue v5.0 — Ready For User Self-Testing ✨</router-link>
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <router-link to="/" class="logo">🚀 UVT Vue v5.1 — Certified ✨</router-link>
+          <span style="background: linear-gradient(135deg, #10b981, #059669); color: #fff; border-radius: 20px; padding: 4px 12px; font-size: 12px; font-weight: 700; box-shadow: 0 2px 8px rgba(16,185,129,0.4);">Certified v5.1</span>
+        </div>
+
 
 
         <nav class="nav-links">
@@ -22,7 +26,7 @@
     </main>
 
     <footer class="footer">
-      <p>&copy; 2026 Universal Visual Testing Platform · Vue.js · Percy Integrated · Final Validation Round ✅</p>
+      <p>&copy; 2026 Universal Visual Testing Platform · Vue.js · Percy Integrated · Final Validation Round. Test 2.0</p>
     </footer>
   </div>
 </template>

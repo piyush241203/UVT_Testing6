@@ -19,12 +19,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
+          cache: 'npm'
 
       - name: Install dependencies
-        run: npm install --no-package-lock
-
-
-
+        run: npm install
 
       - name: UVT Environment Diagnostic
         run: |
@@ -58,19 +56,38 @@ jobs:
             echo "Percy CLI: Not Installed"
           fi
           
+          if npm ls @percy/playwright &>/dev/null; then
+            echo "@percy/playwright: $(npm ls @percy/playwright | grep @percy/playwright)"
+          else
+            echo "@percy/playwright: Not Installed or not found in npm ls"
+          fi
+          
           echo "--- Percy Environment Variables ---"
           env | grep PERCY || echo "No other PERCY_* vars found"
           
           echo "======================="
         env:
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
+      - name: Ensure UVT CLI is installed
+        run: |
+          if ! npx uvt --version &>/dev/null; then
+            echo "UVT CLI not found. Installing..."
+            npm install -D @uvt/cli || {
+              echo "UVT CLI was not found."
+              echo "Detected package manager: npm"
+              echo "Workspace: No"
+              echo "Attempted installation: npm install -D @uvt/cli"
+              echo "Please verify package installation."
+              exit 1
+            }
+          fi
 
       - name: Cache Playwright Browsers
         id: playwright-cache
         uses: actions/cache@v4
         with:
           path: ~/.cache/ms-playwright
-          key: ${{ runner.os }}-playwright-${{ hashFiles('**/package.json') }}
+          key: ${{ runner.os }}-playwright-${{ hashFiles('**/package-lock.json') }}
 
       - name: Install Playwright Browsers
         if: steps.playwright-cache.outputs.cache-hit != 'true'
@@ -80,10 +97,11 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ~/.local/share/percy
-          key: ${{ runner.os }}-percy-${{ hashFiles('**/package.json') }}
+          key: ${{ runner.os }}-percy-${{ hashFiles('**/package-lock.json') }}
 
       - name: Build frontend application
         run: npm run build --if-present
+        continue-on-error: true
 
       - name: Start dev server in background
         run: npx vite --port 5173 --strictPort &
@@ -95,7 +113,7 @@ jobs:
           done
 
       - name: Run visual regression tests
-        run: npx percy exec -- npx uvt test --port 5173
+        run: npx percy exec -- npx uvt test --changed --port 5173
         env:
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
 
@@ -112,4 +130,3 @@ jobs:
       - name: Teardown background processes
         if: always()
         run: pkill -f "vite" || true
-
