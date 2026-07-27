@@ -99,7 +99,7 @@ jobs:
           done
 
       - name: Run visual regression tests
-        run: NODE_PATH=./node_modules:$PWD/node_modules node uvt-packages/cli/dist/bin.js run
+        run: node uvt-packages/cli/dist/bin.js run
         env:
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
 
