@@ -67,6 +67,7 @@ jobs:
           
           echo "======================="
         env:
+          PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
       - name: Cache Playwright Browsers
         id: playwright-cache
         uses: actions/cache@v4
