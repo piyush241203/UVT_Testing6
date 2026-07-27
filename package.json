@@ -8,7 +8,7 @@
     "build": "npx vite build"
   },
   "dependencies": {
-    "universal-visual-testing-tool": "file:../..",
+    "playwright": "^1.61.1",
     "vue": "^3.4.29",
     "vue-router": "^4.4.0"
   },
