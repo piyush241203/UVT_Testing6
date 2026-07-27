@@ -98,9 +98,6 @@ jobs:
             curl -s http://localhost:5173 && break || sleep 2
           done
 
-      - name: Ensure playwright module is installed
-        run: npm install -D playwright
-
       - name: Run visual regression tests
         run: node uvt-packages/cli/dist/bin.js run
         env:
