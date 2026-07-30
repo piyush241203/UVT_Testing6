@@ -87,7 +87,7 @@ jobs:
       - name: Run visual regression tests
         # CORRECT PATTERN: npx percy exec -- <uvt command>
         # UVT auto-starts the Vite dev server internally on port 5173.
-        run: npx percy exec -- node uvt-packages/cli/dist/bin.js test --all --port 5173
+        run: npx percy exec -- node uvt-packages/cli/dist/bin.js test --all --port 3000
         env:
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
 
